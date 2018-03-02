@@ -1019,10 +1019,10 @@ func NewDaemon() (*Daemon, error) {
 		if option.Config.AlwaysAllowLocalhost() {
 			log.Info("k8s mode: Allowing localhost to reach local endpoints")
 		}
+	}
 
-		if !singleClusterRoute {
-			node.EnablePerNodeRoutes()
-		}
+	if !singleClusterRoute {
+		node.EnablePerNodeRoutes()
 	}
 
 	// If the device has been specified, the IPv4AllocPrefix and the
@@ -1123,11 +1123,6 @@ func NewDaemon() (*Daemon, error) {
 		log.Infof("  Loopback IPv4: %s", d.loopbackIPv4.String())
 	}
 
-	// Populate list of nodes with local node entry
-	log.Info("Adding local node to local cluster node list")
-	ni, n := node.GetLocalNode()
-	node.UpdateNode(ni, n, node.TunnelRoute, nil)
-
 	// This needs to be done after the node addressing has been configured
 	// as the node address is required as sufix
 	identity.InitIdentityAllocator(&d)
@@ -1135,6 +1130,10 @@ func NewDaemon() (*Daemon, error) {
 	if err = d.init(); err != nil {
 		log.WithError(err).Error("Error while initializing daemon")
 		return nil, err
+	}
+
+	if err := node.RegisterNode(); err != nil {
+		log.WithError(err).Fatal("Unable to register node with cluster")
 	}
 
 	// Start watcher for endpoint IP --> identity mappings in key-value store.
