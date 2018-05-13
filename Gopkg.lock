@@ -148,15 +148,6 @@
   revision = "82fb373e3eaa4e9bbb5b5ac148b0a3a71f80fca6"
 
 [[projects]]
-  name = "github.com/emicklei/go-restful"
-  packages = [
-    ".",
-    "log"
-  ]
-  revision = "2810ccc68e0ca445fa81ebfa03fbf70aca5c41ae"
-  version = "v2.7.0"
-
-[[projects]]
   name = "github.com/evalphobia/logrus_fluent"
   packages = ["."]
   revision = "v0.4.0"
@@ -697,11 +688,6 @@
   revision = "d37e108c89765a8e307f15b8fb2ecd10575da6bb"
 
 [[projects]]
-  name = "github.com/ugorji/go"
-  packages = ["codec"]
-  revision = "f1f1a805ed361a0e078bb537e4ea78cd37dcf065"
-
-[[projects]]
   name = "github.com/vishvananda/netlink"
   packages = [
     ".",
@@ -1016,47 +1002,17 @@
 [[projects]]
   name = "k8s.io/kubernetes"
   packages = [
-    "pkg/api",
-    "pkg/api/meta",
-    "pkg/api/meta/metatypes",
-    "pkg/api/resource",
-    "pkg/api/unversioned",
-    "pkg/auth/user",
-    "pkg/conversion",
-    "pkg/conversion/queryparams",
-    "pkg/fields",
-    "pkg/genericapiserver/openapi/common",
+    "pkg/apis/core",
     "pkg/kubelet/types",
-    "pkg/labels",
     "pkg/registry/core/service/allocator",
     "pkg/registry/core/service/ipallocator",
-    "pkg/runtime",
-    "pkg/runtime/serializer",
-    "pkg/runtime/serializer/json",
-    "pkg/runtime/serializer/protobuf",
-    "pkg/runtime/serializer/recognizer",
-    "pkg/runtime/serializer/versioning",
-    "pkg/selection",
-    "pkg/types",
-    "pkg/util/errors",
-    "pkg/util/framer",
-    "pkg/util/intstr",
-    "pkg/util/json",
-    "pkg/util/labels",
-    "pkg/util/rand",
-    "pkg/util/runtime",
-    "pkg/util/sets",
-    "pkg/util/uuid",
-    "pkg/util/validation",
-    "pkg/util/validation/field",
-    "pkg/util/yaml",
-    "third_party/forked/golang/reflect"
+    "pkg/scheduler/api"
   ]
-  revision = "v1.5.1"
+  revision = "v1.10.2"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5fc77f8a74626acf89633139686d9df8a0ec48c15f7cb82ca1ffa2716a0a2558"
+  inputs-digest = "4e231084d8388993c008cb35bacafadc674e74f3a6563a395ba2dc46259b0ae1"
   solver-name = "gps-cdcl"
   solver-version = 1
