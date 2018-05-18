@@ -452,7 +452,9 @@ func (s *SSHMeta) SetPolicyEnforcement(status string) *CmdRes {
 	// We check before setting PolicyEnforcement; if we do not, EndpointWait
 	// will fail due to the status of the endpoints not changing.
 	log.Infof("setting %s=%s", PolicyEnforcement, status)
-	res := s.ExecCilium(fmt.Sprintf("config -o json | jq -r '.status.realized[\"policy-enforcement\"]'"))
+	res := s.Exec("journalctl -au cilium")
+	log.Infof("journalctl -au cilium output: %s", res.CombineOutput().String())
+	res = s.ExecCilium(fmt.Sprintf("config -o json | jq -r '.status.realized[\"policy-enforcement\"]'"))
 	if res.SingleOut() == status {
 		return res
 	}
